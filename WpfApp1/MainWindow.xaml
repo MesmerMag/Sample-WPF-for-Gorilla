@@ -1,0 +1,73 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:model="clr-namespace:WpfApp1.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow"
+        Height="450"
+        Width="800">
+    
+    <Window.Resources>
+        <Style x:Key="ColumnLabel" TargetType="{x:Type Label}">
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+    </Window.Resources>
+    
+    <!-- Not strictly necessary, but helps the IDE IntelliSense bindings below. -->
+    <Window.DataContext>
+        <model:MainWindowViewModel />
+    </Window.DataContext>
+    
+    <StackPanel HorizontalAlignment="Stretch" Grid.IsSharedSizeScope="True">
+        <!-- The d:DataContext attribute allows the IDE Designer to display sample data. -->
+        <ItemsControl ItemsSource="{Binding Tiers, Mode=OneWay}"
+                      d:DataContext="{d:DesignInstance model:MainWindowViewModelMock, IsDesignTimeCreatable=True}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Margin="0,0,0,10">
+                        <!-- Header columns -->
+                        <Grid HorizontalAlignment="Stretch" ShowGridLines="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="100" SharedSizeGroup="RankColumn" />
+                                <ColumnDefinition Width="100" SharedSizeGroup="VpColumn" />
+                                <ColumnDefinition Width="100" SharedSizeGroup="WarScoreColumn" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Content="{Binding TierNum, Mode=OneWay}" Style="{StaticResource ColumnLabel}" />
+                            <Label Grid.Column="1" HorizontalAlignment="Center" Content="Rank" Style="{StaticResource ColumnLabel}" />
+                            <Label Grid.Column="2" HorizontalAlignment="Center" Content="VP" Style="{StaticResource ColumnLabel}" />
+                            <Label Grid.Column="3" HorizontalAlignment="Center" Content="War Score" Style="{StaticResource ColumnLabel}" />
+                            <Label Grid.Column="4" Content="Next Match" Style="{StaticResource ColumnLabel}" />
+                        </Grid>
+                        
+                        <!-- Data rows -->
+                        <ItemsControl ItemsSource="{Binding Servers, Mode=OneWay}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Stretch" ShowGridLines="True">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition SharedSizeGroup="RankColumn" />
+                                            <ColumnDefinition SharedSizeGroup="VpColumn" />
+                                            <ColumnDefinition SharedSizeGroup="WarScoreColumn" />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Content="{Binding Name}" />
+                                        <Label Grid.Column="1" HorizontalAlignment="Center" Content="{Binding Rank, Mode=OneWay}" />
+                                        <Label Grid.Column="2" HorizontalAlignment="Center" Content="{Binding VictoryPoints, Mode=OneWay}" />
+                                        <Label Grid.Column="3" HorizontalAlignment="Center" Content="{Binding WarScore, Mode=OneWay}" />
+                                        <Label Grid.Column="4" Content="Foo"></Label>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+  </StackPanel>
+</Window>
