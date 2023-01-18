@@ -56,7 +56,7 @@
                                             <ColumnDefinition SharedSizeGroup="WarScoreColumn" />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <Label Grid.Column="0" Content="{Binding Name}" />
+                                        <Label Grid.Column="0" Content="{Binding Name, Mode=OneWay}" />
                                         <Label Grid.Column="1" HorizontalAlignment="Center" Content="{Binding Rank, Mode=OneWay}" />
                                         <Label Grid.Column="2" HorizontalAlignment="Center" Content="{Binding VictoryPoints, Mode=OneWay}" />
                                         <Label Grid.Column="3" HorizontalAlignment="Center" Content="{Binding WarScore, Mode=OneWay}" />
