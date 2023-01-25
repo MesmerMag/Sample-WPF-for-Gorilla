@@ -1,4 +1,5 @@
-﻿using MinimalDataBindingSample.ViewModel;
+﻿using System.Threading.Tasks;
+using MinimalDataBindingSample.ViewModel;
 
 namespace MinimalDataBindingSample
 {
@@ -7,7 +8,15 @@ namespace MinimalDataBindingSample
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
+            
+            var vm = new MainWindowViewModel();
+            DataContext = vm;
+
+            // Faking updating the label text after, e.g., an API request:
+            Task.Delay(2000).ContinueWith(_ =>
+            {
+                vm.LabelText = new LabelText { Text = "Aliens!" };
+            });
         }
     }
 }
