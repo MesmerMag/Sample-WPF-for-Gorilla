@@ -1,11 +1,9 @@
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace WpfApp1.ViewModel;
 
 public sealed class MainWindowViewModelMock : MainWindowViewModel
 {
-    [SetsRequiredMembers]
     public MainWindowViewModelMock()
     {
         Tiers = new List<Tier>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="MinimalDataBindingSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:model="clr-namespace:MinimalDataBindingSample.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    
+    <!-- Not strictly necessary, but helps the IDE IntelliSense bindings below. -->
+    <Window.DataContext>
+        <model:MainWindowViewModel />
+    </Window.DataContext>
+    
+    <!-- d:DataContext allows your IDE Designer to render using mock data. -->
+    <Grid d:DataContext="{d:DesignInstance model:MainWindowViewModelMock, IsDesignTimeCreatable=True}">
+        <Label Content="{Binding LabelText.Text }" />
+    </Grid>
+</Window>
