@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using WpfApp1.ViewModel;
+﻿using WpfApp1.ViewModel;
 
 namespace WpfApp1;
 
